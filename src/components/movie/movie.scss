@@ -1,0 +1,36 @@
+.movie {
+  margin-bottom: 50px;
+  cursor: pointer;
+  position: relative;
+  width: 360px;
+
+  img {
+    height: 500px;
+    width: 360px;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    color: #ababab;
+    margin-top: 10px;
+
+    &-name {
+      font-size: 18px;
+      padding: 5px 0;
+    }
+
+    &-tagline {
+      margin-top: 5px;
+      font-size: 14px;
+    }
+  }
+
+  &__release {
+    border: 1px solid #ababab;
+    border-radius: 4px;
+    padding: 4px 8px;
+    margin-top: 5px;
+    height: 18px;
+  }
+}
