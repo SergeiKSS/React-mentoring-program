@@ -1,20 +1,6 @@
 .header {
   height: 400px;
 
-  &__background {
-    width: 100%;
-    position: absolute;
-    top: 0;
-    right: 0;
-
-    img {
-      height: 400px;
-      width: 100%;
-      opacity: .2;
-      filter: blur(3px);
-    }
-  }
-
   &__logo {
     height: 80px;
     margin: 10px 20px;
