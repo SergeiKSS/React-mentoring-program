@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './movie.scss';
+import { connect } from 'react-redux';
+import { openDeleteMovieForm, openEditMovieForm } from '../../actions';
 
-const Movie = (props) => {
-  const { data, editMovie, deleteMovie } = props;
+
+const Movie = ({ data, editMovie, deleteMovie }) => {
   const { id, title, path, tagline, date } = data;
   const [showOptionsFlag, showOptions] = useState(false);
 
@@ -42,8 +44,10 @@ const Movie = (props) => {
 
 Movie.propTypes = {
   data: PropTypes.object.isRequired,
-  editMovie: PropTypes.func.isRequired,
-  deleteMovie: PropTypes.func.isRequired,
 };
 
-export default Movie;
+const mapDispatchToProps = (dispatch) => ({
+  editMovie: (id) => dispatch(openEditMovieForm(id)),
+  deleteMovie: (id) => dispatch(openDeleteMovieForm(id)),
+});
+export default connect(null, mapDispatchToProps)(Movie);
