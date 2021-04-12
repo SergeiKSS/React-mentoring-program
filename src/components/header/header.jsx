@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import Logo from '../logo/logo';
 import AddMovieButton from '../addMovie/addMovie';
 import Search from '../Search/Search';
@@ -6,14 +7,13 @@ import AddMovieForm from '../addMovie/addMovie';
 import HeaderBackground from '../headerBackground/headerBackground';
 import './header.scss';
 
-const Header = () => {
-  const [openAddMovieForm, toggleForm] = useState(false);
+const Header = ({ openAddMovieForm }) => {
 
   return (
     <>
       {openAddMovieForm
         ? (
-            <AddMovieForm toggleForm={toggleForm} />
+            <AddMovieForm />
         )
         : ''}
       <header className="header">
@@ -21,7 +21,7 @@ const Header = () => {
         <div className="container">
           <div className="header__logo-panel">
             <Logo />
-            <AddMovieButton toggleForm={toggleForm} />
+            <AddMovieButton />
           </div>
           <div className="header__search-panel">
             <Search />
@@ -32,4 +32,8 @@ const Header = () => {
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+  openAddMovieForm: state.openMovieCreateForm,
+});
+
+export default connect(mapStateToProps)(Header);

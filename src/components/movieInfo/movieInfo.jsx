@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import { useParams} from 'react-router';
 import { Link } from 'react-router-dom';
 import HeaderBackground from '../headerBackground/headerBackground';
@@ -6,21 +7,19 @@ import Logo from '../logo/logo';
 
 import './movieInfo.scss';
 
-import movieList from '../../../mockData/mockData';
-
 function useMovie(id) {
   const [movie, setMovie] = useState({});
 
   useEffect(() => {
-    setMovie(movieList.find((el) => el.id == id));
+    setMovie(movies.find((el) => el.id == id));
   }, []);
 
   return movie;
 }
 
-const MovieInfo = () => {
+const MovieInfo = ({ movies }) => {
   const { id } = useParams();
-  const movie = useMovie(id);
+  const movie = useMovie(movies, id);
 
   return (
     <div className="movie-info">
@@ -54,4 +53,8 @@ const MovieInfo = () => {
   );
 };
 
-export default MovieInfo;
+const mapStateToProps = (state) => ({
+  movies: state.movies,
+});
+
+export default connect(mapStateToProps)(MovieInfo);
